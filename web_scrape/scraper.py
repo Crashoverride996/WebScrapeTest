@@ -87,8 +87,6 @@ class Scraper:
 
 				try:
 
-					today = dt.date.today()
-
 					currency_json['page'] = page
 
 					currency_subpage = requests.post(self.start_url, headers=get_header(), data=currency_json).content
