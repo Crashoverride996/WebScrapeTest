@@ -21,18 +21,18 @@ json_template = """
 
 class Scraper:
 	"""
-		A class to represent a scraper.
+		A class to represent a Currency Scraper.
 
 
 		Attributes
 		----------
 		config : dict
-			configuration loaded from environment variables
+			configuration loaded from environment variables.
 
 		Methods
 		-------
 		run():
-			Extracts all information for each currency and saves it in csv file.
+			Extracts all information for each currency and saves it in a csv file.
 	"""
 
 	def __init__(self, config=None):
@@ -47,10 +47,10 @@ class Scraper:
 
 	def run(self):
 		"""
-			Performs extraction of data for all of currencies available
+			Performs extraction of data for all of currencies available.
 
 			Returns:
-				Integer: Number of extracted currencies
+				Integer: Number of extracted currencies.
 
 		"""
 		print(f'Start of program - {datetime.now().time()}')
@@ -119,10 +119,10 @@ class Scraper:
 
 	async def async_run(self):
 		"""
-			Asynchronously performs extraction of data for all of currencies available
+			Asynchronously performs extraction of data for all of currencies available.
 
 			Returns:
-				Integer: Number of extracted currencies
+				Integer: Number of extracted currencies.
 
 		"""
 		print(f'Start of program - {datetime.now().time()}')
@@ -148,10 +148,12 @@ class Scraper:
 		currency_json['nothing'] = today
 
 		for idx, currency in enumerate(currencies):
+			print(f'Progress: {idx}/{len(currencies)} - Currency: {currency}')
 			async with aiohttp.ClientSession() as session:
 				filename, header, rows = await parse_currency(loop, session, currency, self.start_url, currency_json,
 															  last_page, self.output_directory, self.output_format)
-				create_csv(filename, header, rows)
-				print(f'\tExtracted {len(rows)} rows')
+				if filename:
+					create_csv(filename, header, rows)
+					print(f'\tExtracted {len(rows)} rows')
 
 		return len(currencies)
