@@ -49,6 +49,7 @@ async def parse_currency(loop, session, currency, url, currency_json, page_count
 		print(f'\tError occurred while extracting data for currency: {currency}, on page {page}')
 		print('\tError: ' + str(e))
 		print('\tContinuing...')
+		return None, None, None
 
 
 async def parse_currency_subpage(session, url, currency_json):
