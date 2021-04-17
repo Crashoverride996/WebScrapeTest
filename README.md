@@ -6,7 +6,7 @@ Web Scrape Test is a Python Scraper for extracting currency data.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Scraper.
 
-Available in both as async and non-async version.
+Available in an async and non-async version.
 
 ```bash
 pip setup.py install
